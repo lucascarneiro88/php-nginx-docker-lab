@@ -29,3 +29,6 @@ No diretório `php/`, execute o comando:
 ```bash
 docker build -t php:teste .
 ```
+
+
+![Docker Build Output](/img/img_build_docker.png)
