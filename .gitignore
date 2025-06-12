@@ -1,0 +1,38 @@
+# Volumes e dados persistidos
+volume_app/
+volume_data/
+
+# Logs (se gerar algum log local)
+*.log
+
+# Cache do Composer (se usar)
+vendor/
+composer.lock
+
+# Configurações locais, IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos do sistema (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários e backups
+*.tmp
+*.bak
+
+# Imagens e containers Docker locais (opcional, para evitar confusão)
+*.tar
+*.img
+
+
+# sumary 
+# volume_app/ e volume_data/ são pastas de volumes Docker, que guardam dados que não devem ser versionados.
+
+# vendor/ e composer.lock são gerados pelo Composer (se estiver usando PHP Composer). Se você quiser versionar o composer.lock para controle de dependências, pode remover essa linha.
+
+# Configurações do editor e arquivos temporários só poluem o repositório.
+
+# Logs e arquivos gerados em tempo de execução não fazem sentido versionar.
