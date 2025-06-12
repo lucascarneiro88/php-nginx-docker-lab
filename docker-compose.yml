@@ -1,3 +1,58 @@
 # php: 8.3.13-fpm-alpine3.20
 # nginx: 1.26.2-alpine 
 # mysql: 8.4.3
+
+#containers
+services:
+  php:
+  # build para dockerfile personalizado
+    build:
+      context: ./php
+      # nome conf. na imagem (php)
+    container_name: php
+    volumes:
+    # pasta local(host) para ligar ao interior do container
+      - ./volume_app:/var/www/html
+    networks:
+      - php_network
+      
+  nginx:
+    image: nginx:1.26.2-alpine
+    container_name: nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./volume_app:/var/www/html
+    ports:
+      - "80:80"
+    networks:
+      - php_network
+    depends_on:
+      - php
+
+# mysql pode não ser utilizado, mas é bom pra ter partido da existencia de uma base dedados que possa conectar
+  mysql:
+    image: mysql:8.4.3
+    container_name: mysql
+    ports:
+    # talvez tenha que mudar a porta para não conflitar com outra aplicação
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - php_network
+    # definir volume que compartilha pasta do host com interior do container mysql para persistir dadose não perder ao reiniciar o container e nem perder os dados
+    # pasta local mysql_data, é criada automaticamente se não existir
+    # pasta do container /var/lib/mysql, é onde o mysql armazena os dados
+    volumes:
+      - ./volume_data:/var/lib/mysql
+ 
+
+# rede local
+networks:
+  php_network:
+    driver: bridge
+    # nome da rede
+    name: php_network
+  
+  
+    
