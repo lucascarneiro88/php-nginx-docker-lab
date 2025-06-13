@@ -10,6 +10,7 @@ services:
       context: ./php
       # nome conf. na imagem (php)
     container_name: php
+    image: php:8.3.13_personal
     volumes:
     # pasta local(host) para ligar ao interior do container
       - ./volume_app:/var/www/html
