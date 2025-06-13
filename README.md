@@ -102,4 +102,28 @@ Após a inicialização dos containers, a listagem dos arquivos mostra que os di
 - O volume para os dados do banco MySQL (`volume_data`) também foi criado, garantindo que os dados do banco sejam preservados entre reinícios.
 
 ---
+---------------------------------
 
+# 🛠️ Recriação da Imagem PHP com Nome Personalizado
+
+A imagem Docker do serviço PHP foi **recriada com um nome personalizado** (`php:8.3.13_personal`) para facilitar a organização e identificação no projeto.
+
+
+Anteriormente, o Docker gerava um nome automático para a imagem (`php_nginx_mysql_php:latest`), o que pode causar confusão em projetos maiores ou em ambientes compartilhados.  
+Por isso, foi removida a imagem antiga com o comando:
+
+```bash
+docker rmi php_nginx_mysql_php:latest
+```
+
+
+E em seguida, no docker-compose.yml, foi definido um nome específico para a imagem:
+
+
+
+
+```bash
+image: php:8.3.13_personal
+```
+
+![Docker novo vome img container php](/img/img_novo_nome.png)
